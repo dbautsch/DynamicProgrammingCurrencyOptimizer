@@ -36,18 +36,19 @@ int HubstaffOptimizer::GetMaximumProfit() const
 
     for (int dayNumber = 0;;)
     {
-        if (dayNumber + 1 >= stockData.size())
+        if (dayNumber >= stockData.size())
         {
             if (currentMaxProfit <= 0)
             {
-                // no profits found
+                // no more profits found
                 break;
             }
 
             profitSum += currentMaxProfit;
 
-            // restart loop to the place where highest stock data sample was found + 1 day
-            dayNumber = currentMaxProfitIndex + 1;
+            // restart loop to the place where highest stock data sample was found
+            // but we also need to skip one day
+            dayNumber = currentMaxProfitIndex + 2;
             currentLowestPriceDayIndex = -1;
             currentMaxProfit = 0;
             continue;
@@ -64,7 +65,6 @@ int HubstaffOptimizer::GetMaximumProfit() const
             continue;
         }
 
-        ++dayNumber;
         const auto profit = CalculateProfit(currentLowestPriceDayIndex, dayNumber);
 
         if (profit > currentMaxProfit)
@@ -72,6 +72,8 @@ int HubstaffOptimizer::GetMaximumProfit() const
             currentMaxProfit = profit;
             currentMaxProfitIndex = dayNumber;
         }
+
+        ++dayNumber;
     }
 
     return profitSum;

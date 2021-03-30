@@ -33,3 +33,14 @@ TEST(HubstaffOptimizerBasicTests, CanSolveSimpleCase)
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 12);
 }
+
+TEST(HubstaffOptimizerBasicTests, CanSolveMultipleExchanges)
+{
+    HubstaffOptimizer::StockData stockData{1, 2, 1, 10, 15, 2, 7, 13};
+    const int fee = 1;
+
+    int result = 0;
+    HubstaffOptimizer optimizer(stockData, fee);
+    EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
+    EXPECT_EQ(result, 16 );
+}
