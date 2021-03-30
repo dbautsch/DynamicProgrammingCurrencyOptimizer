@@ -44,3 +44,14 @@ TEST(HubstaffOptimizerBasicTests, CanSolveMultipleExchanges)
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 16 );
 }
+
+TEST(HubstaffOptimizerBasicTests, CanSolveSingleElementArray)
+{
+    HubstaffOptimizer::StockData stockData{1};
+    const int fee = 1;
+
+    int result = 0;
+    HubstaffOptimizer optimizer(stockData, fee);
+    EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
+    EXPECT_EQ(result, 0 );
+}

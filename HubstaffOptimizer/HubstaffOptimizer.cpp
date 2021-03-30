@@ -20,6 +20,8 @@ bool HubstaffOptimizer::StockPriceIsLowest(int dayIndex,
 
 int HubstaffOptimizer::CalculateProfit(int lowestIndex, int highestIndex) const
 {
+    // Calculate profit of given stock exchange and fee.
+
     const auto currentLowestPrice = stockData[lowestIndex];
     const auto highestPrice = stockData[highestIndex];
     const int profit = highestPrice - fee - currentLowestPrice - fee;
@@ -29,6 +31,12 @@ int HubstaffOptimizer::CalculateProfit(int lowestIndex, int highestIndex) const
  
 int HubstaffOptimizer::GetMaximumProfit() const
 {
+    /*
+        Calculate max profit using iterational implementation of optimizer.
+        May handle multiple exchanges.
+        Returns the total sum of all optimal exchanges (highest-lower incl. fee).
+    */
+
     int currentLowestPriceDayIndex = -1;
     int profitSum = 0;
     int currentMaxProfit = 0;
@@ -38,16 +46,18 @@ int HubstaffOptimizer::GetMaximumProfit() const
     {
         if (dayNumber >= stockData.size())
         {
+            // we reach end of data
             if (currentMaxProfit <= 0)
             {
                 // no more profits found
                 break;
             }
 
+            // add current max profit to the sum of total profits found
             profitSum += currentMaxProfit;
 
             // restart loop to the place where highest stock data sample was found
-            // but we also need to skip one day
+            // but we also need to skip one day (resting)
             dayNumber = currentMaxProfitIndex + 2;
             currentLowestPriceDayIndex = -1;
             currentMaxProfit = 0;
