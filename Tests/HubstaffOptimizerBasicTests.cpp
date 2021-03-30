@@ -31,5 +31,5 @@ TEST(HubstaffOptimizerBasicTests, CanSolveSimpleCase)
     int result = 0;
     HubstaffOptimizer optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
-    EXPECT_EQ(result, 7);
+    EXPECT_EQ(result, 12);
 }

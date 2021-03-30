@@ -15,4 +15,7 @@ public:
 private:
     StockData stockData;
     int fee = 0;
+
+    bool StockPriceIsLowest(int dayIndex, int currentLowestPriceDay) const;
+    int CalculateProfit(int lowestIndex, int highestIndex) const;
 };
