@@ -28,30 +28,6 @@ int HubstaffOptimizerDynamic::GetMaximumProfit() const
         return 0;
     }
 
-    //  TODO - use circular buffer or queue to reduce memory complexity
-    
-    /*
-    std::vector<int> profitsCache(stockData.size());
-
-    int highestProfitSum = 0;
-
-    profitsCache[0] = 0;
-    profitsCache[1] = std::max(profitsCache[0], currentMaxProfit + stockData[1] - fee);
-
-    for (int dayNumber = 2; dayNumber < stockData.size(); ++dayNumber)
-    {
-        const auto newProfit = 
-            CalculateProfit(profitsCache[dayNumber - 2], stockData[dayNumber], fee);
-
-        currentMaxProfit = std::max(currentMaxProfit, newProfit);
-        const auto currentProfit = 
-            std::max(profitsCache[dayNumber - 1], currentMaxProfit + stockData[dayNumber]);
-
-        profitsCache[dayNumber] = currentProfit;
-        highestProfitSum = std::max(highestProfitSum, currentProfit);
-    }
-    */
-
     std::deque<int> profitsBuffer;
     int highestProfitSum = 0;
 

@@ -4,8 +4,6 @@
 
 #include "IHubstaffOptimizer.h"
 
-
-
 class HubstaffOptimizer : public IHubstaffOptimizer
 {
 public:
