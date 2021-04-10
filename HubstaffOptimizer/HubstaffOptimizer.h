@@ -2,15 +2,17 @@
 
 #include <vector>
 
-class HubstaffOptimizer
+#include "IHubstaffOptimizer.h"
+
+
+
+class HubstaffOptimizer : public IHubstaffOptimizer
 {
 public:
-    using StockData = std::vector<int>;
-
-    explicit HubstaffOptimizer(StockData theStockData, int theFee);
+    explicit HubstaffOptimizer(IHubstaffOptimizer::StockData theStockData, int theFee);
     ~HubstaffOptimizer() = default;
 
-    int GetMaximumProfit() const;
+    int GetMaximumProfit() const override;
 
 private:
     StockData stockData;

@@ -1,9 +1,11 @@
 #include "HubstaffOptimizer.h"
 
 #include <iostream>
+#include <vector>
 
-HubstaffOptimizer::HubstaffOptimizer(StockData theStockData, int theFee)
+HubstaffOptimizer::HubstaffOptimizer(IHubstaffOptimizer::StockData theStockData, int theFee)
     :
+    IHubstaffOptimizer(),
     stockData(std::move(theStockData)), fee(theFee)
 {
     
@@ -69,7 +71,17 @@ int HubstaffOptimizer::GetMaximumProfit() const
         if (currentLowestPriceDayIndex < 0 ||
             StockPriceIsLowest(dayNumber, currentLowestPriceDayIndex))
         {
-            // take that into consideration
+            // end of "local max" - take that into consideration
+            if (currentMaxProfit > 0)
+            {
+                profitSum += currentMaxProfit;
+                currentMaxProfit = 0;
+                // cool down one extra day
+                dayNumber += 1;
+                currentLowestPriceDayIndex = -1;
+                continue;
+            }
+
             currentLowestPriceDayIndex = dayNumber;
             ++dayNumber;
             continue;

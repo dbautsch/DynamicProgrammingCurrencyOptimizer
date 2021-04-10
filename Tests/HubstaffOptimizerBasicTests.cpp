@@ -55,3 +55,40 @@ TEST(HubstaffOptimizerBasicTests, CanSolveSingleElementArray)
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 0 );
 }
+
+TEST(HubstaffOptimizerBasicTests, CanSolveSpecialCase)
+{
+    /*
+    special case (profit sum = 60)
+        2,  3,  50, 1,  90, 80, 1,  17
+        |        |              |    |
+        ----------              ------
+            |                      |
+            46                    14
+    */
+
+    HubstaffOptimizer::StockData stockData{2, 3, 50, 1, 90, 80, 1, 17};
+    const int fee = 1;
+
+    int result = 0;
+    HubstaffOptimizer optimizer(stockData, fee);
+    EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
+    EXPECT_EQ(result, 60 );
+}
+
+/*
+    special case (60)
+        2,  3,  50, 1,  90, 80, 1,  17
+        |        |              |    |
+        ----------              ------
+            |                      |
+            46                    14
+
+
+    special case 2 (101)
+        2,  3,  50, 1,  90, 80, 1,  17
+                    |    |      |   |
+                    ------      -----
+                       |          |
+                       87         14
+*/
