@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name
-project(HubstaffChallenge)
+project(DynamicProgrammingOptimizerChallenge)
 
-file(GLOB HubstaffOptimizer_SRC
-    "HubstaffOptimizer/*.cpp"
-    "HubstaffOptimizer/*.h"
+file(GLOB DynamicProgrammingOptimizer_SRC
+    "DynamicProgrammingOptimizer/*.cpp"
+    "DynamicProgrammingOptimizer/*.h"
 )
 
 file(GLOB Tests_SRC
@@ -13,16 +13,16 @@ file(GLOB Tests_SRC
     "Tests/*.h"
 )
 
-# HubstaffOptimizer shared library
-add_library(hubstaffOptimizer SHARED ${HubstaffOptimizer_SRC})
-set_property(TARGET hubstaffOptimizer PROPERTY CXX_STANDARD 17)
+# DynamicProgrammingOptimizer shared library
+add_library(DynamicProgrammingOptimizer SHARED ${DynamicProgrammingOptimizer_SRC})
+set_property(TARGET DynamicProgrammingOptimizer PROPERTY CXX_STANDARD 17)
 
-# HubstaffOptimizer tests
+# DynamicProgrammingOptimizer tests
 add_executable(tests ${Tests_SRC})
 set_property(TARGET tests PROPERTY CXX_STANDARD 17)
 target_link_libraries(tests gtest)
 if (UNIX)
 target_link_libraries(tests pthread)
 endif (UNIX)
-target_link_libraries(tests hubstaffOptimizer)
-target_include_directories(tests PRIVATE HubstaffOptimizer)
+target_link_libraries(tests DynamicProgrammingOptimizer)
+target_include_directories(tests PRIVATE DynamicProgrammingOptimizer)

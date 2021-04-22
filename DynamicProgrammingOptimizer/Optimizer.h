@@ -2,13 +2,13 @@
 
 #include <vector>
 
-#include "IHubstaffOptimizer.h"
+#include "IOptimizer.h"
 
-class HubstaffOptimizer : public IHubstaffOptimizer
+class Optimizer : public IOptimizer
 {
 public:
-    explicit HubstaffOptimizer(IHubstaffOptimizer::StockData theStockData, int theFee);
-    ~HubstaffOptimizer() = default;
+    explicit Optimizer(IOptimizer::StockData theStockData, int theFee);
+    ~Optimizer() = default;
 
     int GetMaximumProfit() const override;
 

@@ -1,17 +1,17 @@
-#include "HubstaffOptimizer.h"
+#include "Optimizer.h"
 
 #include <iostream>
 #include <vector>
 
-HubstaffOptimizer::HubstaffOptimizer(IHubstaffOptimizer::StockData theStockData, int theFee)
+Optimizer::Optimizer(IOptimizer::StockData theStockData, int theFee)
     :
-    IHubstaffOptimizer(),
+    IOptimizer(),
     stockData(std::move(theStockData)), fee(theFee)
 {
     
 }
 
-bool HubstaffOptimizer::StockPriceIsLowest(int dayIndex,
+bool Optimizer::StockPriceIsLowest(int dayIndex,
     int currentLowestPriceDay) const
 {
     const auto currentLowestPrice = stockData[currentLowestPriceDay];
@@ -20,7 +20,7 @@ bool HubstaffOptimizer::StockPriceIsLowest(int dayIndex,
     return testedPrice < currentLowestPrice;
 }
 
-int HubstaffOptimizer::CalculateProfit(int lowestIndex, int highestIndex) const
+int Optimizer::CalculateProfit(int lowestIndex, int highestIndex) const
 {
     // Calculate profit of given stock exchange and fee.
 
@@ -31,7 +31,7 @@ int HubstaffOptimizer::CalculateProfit(int lowestIndex, int highestIndex) const
     return profit;
 }
  
-int HubstaffOptimizer::GetMaximumProfit() const
+int Optimizer::GetMaximumProfit() const
 {
     /*
         Calculate max profit using iterational implementation of optimizer.

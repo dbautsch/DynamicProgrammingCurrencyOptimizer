@@ -1,19 +1,19 @@
-#include "HubstaffOptimizerDynamic.h"
+#include "OptimizerDynamic.h"
 
 #include <limits>
 #include <array>
 #include <deque>
 
-HubstaffOptimizerDynamic::HubstaffOptimizerDynamic(
-    IHubstaffOptimizer::StockData theStockData, int theFee)
+OptimizerDynamic:OptimizerDynamic(
+    IOptimizer::StockData theStockData, int theFee)
     :
-    IHubstaffOptimizer(),
+    IOptimizer(),
     stockData(std::move(theStockData)), fee(theFee)
 {
 
 }
 
-int HubstaffOptimizerDynamic::CalculateProfit(
+int OptimizerDynamic::CalculateProfit(
     int leftProfit,
     int rightProfit,
     int fee) const
@@ -21,7 +21,7 @@ int HubstaffOptimizerDynamic::CalculateProfit(
     return leftProfit - rightProfit - (fee * 2);
 }
 
-int HubstaffOptimizerDynamic::GetMaximumProfit() const
+int OptimizerDynamic::GetMaximumProfit() const
 {
     if (stockData.size() < 2)
     {

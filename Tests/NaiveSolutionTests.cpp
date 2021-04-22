@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "HubstaffOptimizer.h"
+#include "Optimizer.h"
 
-TEST(HubstaffOptimizerBasicTests, CanInitializeClass)
+TEST(OptimizerBasicTests, CanInitializeClass)
 {
     /*
         Lets try to initialize an empty object of optimizer class.
@@ -11,52 +11,52 @@ TEST(HubstaffOptimizerBasicTests, CanInitializeClass)
         the class simply is being correctly exported.
     */
 
-    HubstaffOptimizer optimizer({}, 0);
+    Optimizer optimizer({}, 0);
 }
 
-TEST(HubstaffOptimizerBasicTests, CanWorkWithEmptyArray)
+TEST(OptimizerBasicTests, CanWorkWithEmptyArray)
 {
-    HubstaffOptimizer optimizer({}, 0);
+    Optimizer optimizer({}, 0);
 
     int result = 0;
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 0);
 }
 
-TEST(HubstaffOptimizerBasicTests, CanSolveSimpleCase)
+TEST(OptimizerBasicTests, CanSolveSimpleCase)
 {
-    HubstaffOptimizer::StockData stockData{1, 2, 1, 10, 15, 2};
+    IOptimizer::StockData stockData{1, 2, 1, 10, 15, 2};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizer optimizer(stockData, fee);
+    Optimizer optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 12);
 }
 
-TEST(HubstaffOptimizerBasicTests, CanSolveMultipleExchanges)
+TEST(OptimizerBasicTests, CanSolveMultipleExchanges)
 {
-    HubstaffOptimizer::StockData stockData{1, 2, 1, 10, 15, 2, 7, 13};
+    IOptimizer::StockData stockData{1, 2, 1, 10, 15, 2, 7, 13};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizer optimizer(stockData, fee);
+    Optimizer optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 16 );
 }
 
-TEST(HubstaffOptimizerBasicTests, CanSolveSingleElementArray)
+TEST(OptimizerBasicTests, CanSolveSingleElementArray)
 {
-    HubstaffOptimizer::StockData stockData{1};
+    IOptimizer::StockData stockData{1};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizer optimizer(stockData, fee);
+    Optimizer optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 0 );
 }
 
-TEST(HubstaffOptimizerBasicTests, CanSolveSpecialCase)
+TEST(OptimizerBasicTests, CanSolveSpecialCase)
 {
     /*
     special case (profit sum = 60)
@@ -67,11 +67,11 @@ TEST(HubstaffOptimizerBasicTests, CanSolveSpecialCase)
             46                    14
     */
 
-    HubstaffOptimizer::StockData stockData{2, 3, 50, 1, 90, 80, 1, 17};
+    IOptimizer::StockData stockData{2, 3, 50, 1, 90, 80, 1, 17};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizer optimizer(stockData, fee);
+    Optimizer optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 60 );
 }

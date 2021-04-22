@@ -2,13 +2,13 @@
 
 #include <vector>
 
-class IHubstaffOptimizer
+class IOptimizer
 {
 public:
     using StockData = std::vector<int>;
 
-    IHubstaffOptimizer() = default;
-    ~IHubstaffOptimizer() = default;
+    IOptimizer() = default;
+    ~IOptimizer() = default;
 
     virtual int GetMaximumProfit() const = 0;
 };

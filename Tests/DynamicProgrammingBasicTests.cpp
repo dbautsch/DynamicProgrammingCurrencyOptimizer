@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include "HubstaffOptimizerDynamic.h"
-#include "IHubstaffOptimizer.h"
+#include "OptimizerDynamic.h"
+#include "IOptimizer.h"
 
-TEST(HubstaffOptimizerDynamicBasicTests, CanInitializeClass)
+TEST(OptimizerDynamicBasicTests, CanInitializeClass)
 {
     /*
         Lets try to initialize an empty object of optimizer class.
@@ -12,52 +12,52 @@ TEST(HubstaffOptimizerDynamicBasicTests, CanInitializeClass)
         the class simply is being correctly exported.
     */
 
-    HubstaffOptimizerDynamic optimizer({}, 0);
+    OptimizerDynamic optimizer({}, 0);
 }
 
-TEST(HubstaffOptimizerDynamicBasicTests, CanWorkWithEmptyArray)
+TEST(OptimizerDynamicBasicTests, CanWorkWithEmptyArray)
 {
-    HubstaffOptimizerDynamic optimizer({}, 0);
+    OptimizerDynamic optimizer({}, 0);
 
     int result = 0;
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 0);
 }
 
-TEST(HubstaffOptimizerDynamicBasicTests, CanSolveSimpleCase)
+TEST(OptimizerDynamicBasicTests, CanSolveSimpleCase)
 {
-    IHubstaffOptimizer::StockData stockData{1, 2, 1, 10, 15, 2};
+    IOptimizer::StockData stockData{1, 2, 1, 10, 15, 2};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizerDynamic optimizer(stockData, fee);
+    OptimizerDynamic optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 13);
 }
 
-TEST(HubstaffOptimizerDynamicBasicTests, CanSolveMultipleExchanges)
+TEST(OptimizerDynamicBasicTests, CanSolveMultipleExchanges)
 {
-    IHubstaffOptimizer::StockData stockData{1, 2, 1, 10, 15, 2, 7, 13};
+    IOptimizer::StockData stockData{1, 2, 1, 10, 15, 2, 7, 13};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizerDynamic optimizer(stockData, fee);
+    OptimizerDynamic optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 17);
 }
 
-TEST(HubstaffOptimizerDynamicBasicTests, CanSolveSingleElementArray)
+TEST(OptimizerDynamicBasicTests, CanSolveSingleElementArray)
 {
-    IHubstaffOptimizer::StockData stockData{1};
+    IOptimizer::StockData stockData{1};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizerDynamic optimizer(stockData, fee);
+    OptimizerDynamic optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 0 );
 }
 
-TEST(HubstaffOptimizerDynamicBasicTests, CanSolveSpecialCase)
+TEST(OptimizerDynamicBasicTests, CanSolveSpecialCase)
 {
     /*
         special case 2 (101)
@@ -68,11 +68,11 @@ TEST(HubstaffOptimizerDynamicBasicTests, CanSolveSpecialCase)
                        87         14
     */
 
-    IHubstaffOptimizer::StockData stockData{2, 3, 50, 1, 90, 80, 1, 17};
+    IOptimizer::StockData stockData{2, 3, 50, 1, 90, 80, 1, 17};
     const int fee = 1;
 
     int result = 0;
-    HubstaffOptimizerDynamic optimizer(stockData, fee);
+    OptimizerDynamic optimizer(stockData, fee);
     EXPECT_NO_THROW(result = optimizer.GetMaximumProfit());
     EXPECT_EQ(result, 101 );
 }
